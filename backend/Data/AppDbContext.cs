@@ -13,7 +13,7 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
         modelBuilder.Entity<Category>(category =>
         {
             category.ToTable("categories");
-            category.HasKey(item => item.Id);
+            category.HasKey(item => item.Id).HasName("pk_categories");
 
             category.Property(item => item.Id).HasColumnName("id");
             category.Property(item => item.Name)
@@ -23,14 +23,16 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
             category.Property(item => item.IsDefault).HasColumnName("is_default");
             category.Property(item => item.IsProtected).HasColumnName("is_protected");
 
-            category.HasIndex(item => item.Name).IsUnique();
+            category.HasIndex(item => item.Name)
+                .HasDatabaseName("ix_categories_name")
+                .IsUnique();
             category.HasData(DefaultCategories.All);
         });
 
         modelBuilder.Entity<Expense>(expense =>
         {
             expense.ToTable("expenses");
-            expense.HasKey(item => item.Id);
+            expense.HasKey(item => item.Id).HasName("pk_expenses");
 
             expense.Property(item => item.Id).HasColumnName("id");
             expense.Property(item => item.Amount)
@@ -58,9 +60,10 @@ public sealed class AppDbContext(DbContextOptions<AppDbContext> options) : DbCon
                 .WithMany()
                 .HasForeignKey(item => item.CategoryId)
                 .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("fk_expenses_categories_category_id")
                 .IsRequired();
 
-            expense.HasIndex(item => item.CategoryId);
+            expense.HasIndex(item => item.CategoryId).HasDatabaseName("ix_expenses_category_id");
         });
     }
 }

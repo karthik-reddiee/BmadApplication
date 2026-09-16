@@ -30,6 +30,7 @@ public partial class InitialCategories : Migration
         migrationBuilder.InsertData(
             table: "categories",
             columns: ["id", "is_default", "is_protected", "name"],
+            columnTypes: ["uuid", "boolean", "boolean", "character varying(80)"],
             values: new object[,]
             {
                 { new Guid("10000000-0000-0000-0000-000000000001"), true, true, "Food" },

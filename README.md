@@ -7,7 +7,15 @@ Local MVP scaffold for Story 1.1.
 Backend:
 
 ```bash
-dotnet run --project backend
+dotnet ef database update --project backend/backend.csproj
+dotnet run --project backend/backend.csproj --urls http://localhost:5000
+```
+
+If your terminal is already inside `backend/`, use:
+
+```bash
+dotnet ef database update --project backend.csproj
+dotnet run --project backend.csproj --urls http://localhost:5000
 ```
 
 Frontend:
@@ -30,4 +38,3 @@ npm --prefix frontend run build
 ```
 
 EF migrations are committed and must be applied explicitly by developers.
-

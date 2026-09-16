@@ -27,11 +27,7 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseCors("FrontendDev");
-}
-
+app.UseCors("FrontendDev");
 app.UseExceptionHandler();
 app.MapCategoryEndpoints();
 app.MapExpenseEndpoints();
