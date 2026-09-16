@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bmad-expense-tracker — Categories Mobile Mockup</title>
+  <style>
+    /*
+      Governed by DESIGN.md: Colors, Typography, Components.
+      Governed by EXPERIENCE.md: Information Architecture, Component Patterns, State Patterns, Key Flow 4.
+    */
+    :root {
+      --surface-base: #FAFAF8;
+      --surface-raised: #FFFFFF;
+      --ink-primary: #1F2933;
+      --ink-secondary: #5B6673;
+      --ink-muted: #8A94A3;
+      --border-subtle: #E2E8ED;
+      --accent: #0F766E;
+      --accent-strong: #0B5F59;
+      --danger: #B42318;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #ECEFEB; display: grid; place-items: center; padding: 24px; color: var(--ink-primary); }
+    .phone { width: 390px; min-height: 844px; background: var(--surface-base); border: 1px solid #D5DBE1; border-radius: 32px; overflow: hidden; box-shadow: 0 18px 50px rgba(31, 41, 51, 0.16); position: relative; }
+    .screen { padding: 22px 16px 88px; }
+    h1 { margin: 0 0 4px; font-size: 24px; line-height: 1.25; letter-spacing: 0; }
+    .subtitle { color: var(--ink-secondary); font-size: 14px; margin-bottom: 18px; }
+    .section { background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 14px; margin-bottom: 14px; }
+    h2 { margin: 0 0 12px; font-size: 18px; line-height: 1.3; letter-spacing: 0; }
+    .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .pill { border: 1px solid var(--border-subtle); border-radius: 9999px; padding: 7px 11px; font-size: 14px; background: #fff; }
+    .protected { color: var(--ink-secondary); background: #F5F7F7; }
+    label { display: block; color: var(--ink-secondary); font-size: 13px; margin-bottom: 6px; }
+    .inline-form { display: grid; grid-template-columns: 1fr auto; gap: 8px; margin-bottom: 12px; }
+    .input { border: 1px solid var(--border-subtle); border-radius: var(--radius-md); background: #fff; padding: 10px; font-size: 15px; min-height: 42px; }
+    .add { border: 0; border-radius: var(--radius-md); background: var(--accent); color: #fff; font-weight: 700; padding: 0 14px; }
+    .category-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid var(--border-subtle); }
+    .category-row:first-of-type { border-top: 0; }
+    .meta { color: var(--ink-secondary); font-size: 14px; }
+    .actions { display: flex; gap: 8px; }
+    .link { color: var(--accent-strong); font-weight: 650; font-size: 14px; }
+    .delete { color: var(--danger); font-weight: 650; font-size: 14px; }
+    .blocked { margin-top: 12px; color: var(--ink-secondary); font-size: 14px; border-top: 1px solid var(--border-subtle); padding-top: 12px; }
+    .bottom-nav { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--border-subtle); padding: 8px 10px 14px; }
+    .nav-item { text-align: center; color: var(--ink-secondary); font-size: 13px; padding: 8px 4px; border-radius: var(--radius-md); }
+    .nav-item.active { color: var(--accent-strong); font-weight: 700; background: #E7F3F1; }
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="Categories mobile mockup">
+    <div class="screen">
+      <h1>Categories</h1>
+      <div class="subtitle">Manage simple spending categories.</div>
+      <section class="section" aria-label="Default Categories">
+        <h2>Default Categories</h2>
+        <div class="pill-grid">
+          <span class="pill protected">Food · Protected</span>
+          <span class="pill protected">Transport · Protected</span>
+          <span class="pill protected">Shopping · Protected</span>
+          <span class="pill protected">Bills · Protected</span>
+          <span class="pill protected">Entertainment · Protected</span>
+          <span class="pill protected">Health · Protected</span>
+          <span class="pill protected">Education · Protected</span>
+          <span class="pill protected">Other · Protected</span>
+        </div>
+      </section>
+      <section class="section" aria-label="Custom Categories">
+        <h2>Custom Categories</h2>
+        <label>Add Category</label>
+        <div class="inline-form">
+          <div class="input">Coffee</div>
+          <button class="add">Add</button>
+        </div>
+        <div class="category-row">
+          <div><strong>Coffee</strong><div class="meta">Used by 3 expenses</div></div>
+          <div class="actions"><span class="link">Edit</span><span class="delete">Delete</span></div>
+        </div>
+        <div class="category-row">
+          <div><strong>Subscriptions</strong><div class="meta">Not used yet</div></div>
+          <div class="actions"><span class="link">Edit</span><span class="delete">Delete</span></div>
+        </div>
+        <div class="blocked">This category is used by existing expenses. Reassign those expenses before deleting it.</div>
+      </section>
+    </div>
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-item">Home</div>
+      <div class="nav-item">Review</div>
+      <div class="nav-item active">Categories</div>
+    </nav>
+  </main>
+</body>
+</html>

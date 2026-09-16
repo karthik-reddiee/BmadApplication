@@ -1,0 +1,117 @@
+using System;
+using Backend.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
+
+#nullable disable
+
+namespace Backend.Data.Migrations;
+
+[DbContext(typeof(AppDbContext))]
+partial class AppDbContextModelSnapshot : ModelSnapshot
+{
+    protected override void BuildModel(ModelBuilder modelBuilder)
+    {
+#pragma warning disable 612, 618
+        modelBuilder
+            .HasAnnotation("ProductVersion", "10.0.0")
+            .HasAnnotation("Relational:MaxIdentifierLength", 63);
+
+        NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+        modelBuilder.Entity("Backend.Domain.Category", b =>
+        {
+            b.Property<Guid>("Id")
+                .ValueGeneratedOnAdd()
+                .HasColumnType("uuid")
+                .HasColumnName("id");
+
+            b.Property<bool>("IsDefault")
+                .HasColumnType("boolean")
+                .HasColumnName("is_default");
+
+            b.Property<bool>("IsProtected")
+                .HasColumnType("boolean")
+                .HasColumnName("is_protected");
+
+            b.Property<string>("Name")
+                .IsRequired()
+                .HasMaxLength(80)
+                .HasColumnType("character varying(80)")
+                .HasColumnName("name");
+
+            b.HasKey("Id")
+                .HasName("pk_categories");
+
+            b.HasIndex("Name")
+                .IsUnique()
+                .HasDatabaseName("ix_categories_name");
+
+            b.ToTable("categories", (string)null);
+
+            b.HasData(
+                new { Id = new Guid("10000000-0000-0000-0000-000000000001"), IsDefault = true, IsProtected = true, Name = "Food" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000002"), IsDefault = true, IsProtected = true, Name = "Transport" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000003"), IsDefault = true, IsProtected = true, Name = "Shopping" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000004"), IsDefault = true, IsProtected = true, Name = "Bills" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000005"), IsDefault = true, IsProtected = true, Name = "Entertainment" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000006"), IsDefault = true, IsProtected = true, Name = "Health" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000007"), IsDefault = true, IsProtected = true, Name = "Education" },
+                new { Id = new Guid("10000000-0000-0000-0000-000000000008"), IsDefault = true, IsProtected = true, Name = "Other" });
+        });
+
+        modelBuilder.Entity("Backend.Domain.Expense", b =>
+        {
+            b.Property<Guid>("Id")
+                .ValueGeneratedOnAdd()
+                .HasColumnType("uuid")
+                .HasColumnName("id");
+
+            b.Property<decimal>("Amount")
+                .HasColumnType("numeric(12,2)")
+                .HasColumnName("amount");
+
+            b.Property<Guid>("CategoryId")
+                .HasColumnType("uuid")
+                .HasColumnName("category_id");
+
+            b.Property<DateTimeOffset>("CreatedAt")
+                .HasColumnType("timestamp with time zone")
+                .HasColumnName("created_at");
+
+            b.Property<string>("Description")
+                .HasMaxLength(240)
+                .HasColumnType("character varying(240)")
+                .HasColumnName("description");
+
+            b.Property<DateOnly>("ExpenseDate")
+                .HasColumnType("date")
+                .HasColumnName("expense_date");
+
+            b.Property<DateTimeOffset>("UpdatedAt")
+                .HasColumnType("timestamp with time zone")
+                .HasColumnName("updated_at");
+
+            b.HasKey("Id")
+                .HasName("pk_expenses");
+
+            b.HasIndex("CategoryId")
+                .HasDatabaseName("ix_expenses_category_id");
+
+            b.ToTable("expenses", (string)null);
+        });
+
+        modelBuilder.Entity("Backend.Domain.Expense", b =>
+        {
+            b.HasOne("Backend.Domain.Category", null)
+                .WithMany()
+                .HasForeignKey("CategoryId")
+                .OnDelete(DeleteBehavior.Restrict)
+                .IsRequired()
+                .HasConstraintName("fk_expenses_categories_category_id");
+        });
+#pragma warning restore 612, 618
+    }
+}

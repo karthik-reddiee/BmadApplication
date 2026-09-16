@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>bmad-expense-tracker — Expense Review Mobile Mockup</title>
+  <style>
+    /*
+      Governed by DESIGN.md: Colors, Typography, Components.
+      Governed by EXPERIENCE.md: Information Architecture, Component Patterns, Interaction Primitives, Key Flow 2.
+    */
+    :root {
+      --surface-base: #FAFAF8;
+      --surface-raised: #FFFFFF;
+      --ink-primary: #1F2933;
+      --ink-secondary: #5B6673;
+      --border-subtle: #E2E8ED;
+      --accent: #0F766E;
+      --accent-strong: #0B5F59;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: #ECEFEB; display: grid; place-items: center; padding: 24px; color: var(--ink-primary); }
+    .phone { width: 390px; min-height: 844px; background: var(--surface-base); border: 1px solid #D5DBE1; border-radius: 32px; overflow: hidden; box-shadow: 0 18px 50px rgba(31, 41, 51, 0.16); position: relative; }
+    .screen { padding: 22px 16px 88px; }
+    h1 { margin: 0 0 4px; font-size: 24px; line-height: 1.25; letter-spacing: 0; }
+    .subtitle { color: var(--ink-secondary); font-size: 14px; margin-bottom: 18px; }
+    .list { background: var(--surface-raised); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 4px 14px; }
+    .expense-row { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 14px 0; border-top: 1px solid var(--border-subtle); }
+    .expense-row:first-child { border-top: 0; }
+    .category { font-weight: 650; margin-bottom: 3px; }
+    .meta { color: var(--ink-secondary); font-size: 14px; line-height: 1.4; }
+    .amount { font-weight: 750; white-space: nowrap; }
+    .bottom-nav { position: absolute; left: 0; right: 0; bottom: 0; display: grid; grid-template-columns: repeat(3, 1fr); background: rgba(255, 255, 255, 0.96); border-top: 1px solid var(--border-subtle); padding: 8px 10px 14px; }
+    .nav-item { text-align: center; color: var(--ink-secondary); font-size: 13px; padding: 8px 4px; border-radius: var(--radius-md); }
+    .nav-item.active { color: var(--accent-strong); font-weight: 700; background: #E7F3F1; }
+  </style>
+</head>
+<body>
+  <main class="phone" aria-label="Expense Review mobile mockup">
+    <div class="screen">
+      <h1>Review</h1>
+      <div class="subtitle">All recorded expenses, most recent first.</div>
+      <section class="list" aria-label="All Expenses">
+        <div class="expense-row"><div><div class="category">Food</div><div class="meta">Lunch · 15 Sep 2026</div></div><div class="amount">₹480</div></div>
+        <div class="expense-row"><div><div class="category">Transport</div><div class="meta">Cab home · 15 Sep 2026</div></div><div class="amount">₹260</div></div>
+        <div class="expense-row"><div><div class="category">Shopping</div><div class="meta">Notebook · 14 Sep 2026</div></div><div class="amount">₹350</div></div>
+        <div class="expense-row"><div><div class="category">Bills</div><div class="meta">Mobile plan · 13 Sep 2026</div></div><div class="amount">₹799</div></div>
+        <div class="expense-row"><div><div class="category">Health</div><div class="meta">Pharmacy · 12 Sep 2026</div></div><div class="amount">₹420</div></div>
+        <div class="expense-row"><div><div class="category">Education</div><div class="meta">Course book · 10 Sep 2026</div></div><div class="amount">₹1,200</div></div>
+        <div class="expense-row"><div><div class="category">Entertainment</div><div class="meta">Movie · 08 Sep 2026</div></div><div class="amount">₹650</div></div>
+      </section>
+    </div>
+    <nav class="bottom-nav" aria-label="Primary navigation">
+      <div class="nav-item">Home</div>
+      <div class="nav-item active">Review</div>
+      <div class="nav-item">Categories</div>
+    </nav>
+  </main>
+</body>
+</html>
